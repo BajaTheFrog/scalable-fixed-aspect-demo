@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://wqijouwafajp"]
+
+[ext_resource type="Script" path="res://jet_pack_man.gd" id="1_amcfp"]
+[ext_resource type="Texture2D" uid="uid://bkb82onlcybia" path="res://icon.svg" id="2_fsodp"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lk20i"]
+radius = 50.0
+height = 120.0
+
+[node name="JetPackMan" type="CharacterBody2D"]
+script = ExtResource("1_amcfp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_fsodp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_lk20i")
