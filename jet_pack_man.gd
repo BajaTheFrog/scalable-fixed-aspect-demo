@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = -500.0
 const DASH_SECONDS = 0.1
 
 var current_x_direction = 1
@@ -76,3 +76,18 @@ func _start_dash_in_direction(direction: Vector2i, time_remaining: float = DASH_
 	velocity.x = direction.x * SPEED * 15
 	velocity.y = direction.y * SPEED * 15
 	print(str(velocity))
+
+
+func _on_button_pressed() -> void:
+	if velocity.y > 0:
+		velocity.y = -1 * velocity.y
+
+
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		$Sprite2D.modulate = random_color()
+
+
+func random_color(saturation: float = 1, value: float = 1, alpha: float = 1) -> Color:
+	var random_hue = randf_range(0, 1)
+	return Color.from_hsv(random_hue, saturation, value, alpha)

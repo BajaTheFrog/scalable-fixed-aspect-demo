@@ -14,6 +14,13 @@ config/name="Godot-4-Jetpack-Prototype"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=1300
+window/size/viewport_height=2000
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [input]
 
 dash_up={

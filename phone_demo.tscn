@@ -1,0 +1,89 @@
+[gd_scene load_steps=3 format=3 uid="uid://jlqpcd1203ku"]
+
+[ext_resource type="Script" path="res://sub_viewport_container_workaround.gd" id="1_e1p65"]
+[ext_resource type="PackedScene" uid="uid://chnmwjy38xvya" path="res://test_jet_pack_scene.tscn" id="1_yxvxa"]
+
+[node name="PhoneDemo" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FullScreen" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/FullScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0885599, 0.0885599, 0.0885599, 1)
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="CanvasLayer/FullScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 0.5625
+
+[node name="SafeArea" type="Control" parent="CanvasLayer/FullScreen/AspectRatioContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/FullScreen/AspectRatioContainer/SafeArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.451172, 0.0925255, 0.374119, 1)
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="CanvasLayer/FullScreen/AspectRatioContainer/SafeArea"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 0.75
+
+[node name="GameplayArea" type="Control" parent="CanvasLayer/FullScreen/AspectRatioContainer/SafeArea/AspectRatioContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/FullScreen/AspectRatioContainer/SafeArea/AspectRatioContainer/GameplayArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/FullScreen/AspectRatioContainer/SafeArea/AspectRatioContainer/GameplayArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+script = ExtResource("1_e1p65")
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/FullScreen/AspectRatioContainer/SafeArea/AspectRatioContainer/GameplayArea/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1012, 1350)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="TestJetPackScene" parent="CanvasLayer/FullScreen/AspectRatioContainer/SafeArea/AspectRatioContainer/GameplayArea/SubViewportContainer/SubViewport" instance=ExtResource("1_yxvxa")]
