@@ -1,6 +1,9 @@
 # Scalable Fixed Aspect Ratio 
 Or in other words - setting up your game to be constrained by UI/Screen bounds.
 
+![Demo in action](demo.gif)
+
+
 The primary use case here is something like making a mobile game played in portrait.
 And you want a consistent and constrained gameplay region that can scale within any screen size. 
 
