@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsr01a8q33ghv"]
+
+[ext_resource type="Script" path="res://sub_viewport_container_workaround.gd" id="1_dpyqa"]
+[ext_resource type="Texture2D" uid="uid://d1y8ud131pm3d" path="res://texture_grid.png" id="2_pq2ml"]
+[ext_resource type="PackedScene" uid="uid://chnmwjy38xvya" path="res://test_gameplay_scene.tscn" id="2_ykpol"]
+
+[node name="phone_portrait_canvas" type="CanvasLayer"]
+
+[node name="full_screen_container" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="full_screen_bg" type="ColorRect" parent="full_screen_container"]
+layout_mode = 2
+color = Color(0.275391, 0.0532494, 0.226568, 1)
+
+[node name="safe_area_container" type="AspectRatioContainer" parent="full_screen_container"]
+layout_mode = 2
+ratio = 0.5625
+
+[node name="safe_area_bg" type="ColorRect" parent="full_screen_container/safe_area_container"]
+layout_mode = 2
+color = Color(0.490234, 0.0201073, 0.295572, 1)
+
+[node name="game_viewport_container" type="SubViewportContainer" parent="full_screen_container/safe_area_container" node_paths=PackedStringArray("subviewport")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_dpyqa")
+subviewport = NodePath("game_viewport")
+
+[node name="game_viewport" type="SubViewport" parent="full_screen_container/safe_area_container/game_viewport_container"]
+handle_input_locally = false
+debug_draw = 1
+sdf_oversize = 2
+size = Vector2i(1000, 1500)
+render_target_update_mode = 4
+
+[node name="grid_sprite" type="Sprite2D" parent="full_screen_container/safe_area_container/game_viewport_container/game_viewport"]
+position = Vector2(1024, 1024)
+scale = Vector2(2, 2)
+texture = ExtResource("2_pq2ml")
+
+[node name="gameplay_scene" parent="full_screen_container/safe_area_container/game_viewport_container/game_viewport" instance=ExtResource("2_ykpol")]

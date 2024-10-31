@@ -1,11 +1,12 @@
 [gd_scene load_steps=2 format=3 uid="uid://chnmwjy38xvya"]
 
-[ext_resource type="PackedScene" uid="uid://wqijouwafajp" path="res://jet_pack_man.tscn" id="1_8vjg8"]
+[ext_resource type="PackedScene" uid="uid://wqijouwafajp" path="res://icon_man.tscn" id="1_8vjg8"]
 
 [node name="TestJetPackScene" type="Node2D"]
 
-[node name="JetPackMan" parent="." instance=ExtResource("1_8vjg8")]
-position = Vector2(561, 289)
+[node name="IconMan" parent="." instance=ExtResource("1_8vjg8")]
+position = Vector2(660, 863)
+scale = Vector2(2, 2)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -29,6 +30,6 @@ offset_top = -8.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 70
-text = "BOUNCE"
+text = "SPIN"
 
-[connection signal="pressed" from="CanvasLayer/Control/Button" to="JetPackMan" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Button" to="IconMan" method="_on_button_pressed"]

@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm5muktarshox"]
+
+[ext_resource type="Script" path="res://sub_viewport_container_workaround.gd" id="1_fx57b"]
+[ext_resource type="Texture2D" uid="uid://d1y8ud131pm3d" path="res://texture_grid.png" id="2_plfgr"]
+
+[node name="phone_portrait_canvas" type="CanvasLayer"]
+
+[node name="full_screen_container" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="full_screen_bg" type="ColorRect" parent="full_screen_container"]
+layout_mode = 2
+color = Color(1, 0.126953, 0.126953, 1)
+
+[node name="safe_area_container" type="AspectRatioContainer" parent="full_screen_container"]
+layout_mode = 2
+ratio = 0.5625
+
+[node name="safe_area_bg" type="ColorRect" parent="full_screen_container/safe_area_container"]
+layout_mode = 2
+color = Color(1, 0.960625, 0.224609, 1)
+
+[node name="game_viewport_container" type="SubViewportContainer" parent="full_screen_container/safe_area_container" node_paths=PackedStringArray("subviewport")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_fx57b")
+subviewport = NodePath("game_viewport")
+
+[node name="game_viewport" type="SubViewport" parent="full_screen_container/safe_area_container/game_viewport_container"]
+handle_input_locally = false
+debug_draw = 1
+sdf_oversize = 2
+size = Vector2i(1000, 1500)
+render_target_update_mode = 4
+
+[node name="grid_sprite" type="Sprite2D" parent="full_screen_container/safe_area_container/game_viewport_container/game_viewport"]
+visible = false
+position = Vector2(1024, 1024)
+scale = Vector2(2, 2)
+texture = ExtResource("2_plfgr")
+
+[node name="your_gameplay_scene_here" type="Node2D" parent="full_screen_container/safe_area_container/game_viewport_container/game_viewport"]
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "RED:
+Full window size
+
+YELLOW:
+\"Safe Area\" 
+
+INNER:
+Gameplay region"
+horizontal_alignment = 1
+vertical_alignment = 1
