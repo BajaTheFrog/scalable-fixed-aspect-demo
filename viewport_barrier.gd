@@ -9,27 +9,27 @@ class_name ViewportBoundaryController
 @export_flags_2d_physics var collision_layer: int = 1:
 	set(value):
 		collision_layer = value
-		_update_layers(value)
+		_update_layers()
 @export_flags_2d_physics var collision_mask: int = 1:
 	set(value):
 		collision_mask = value
-		_update_masks(value)
+		_update_masks()
 
 var update_on_next_physics_frame = false
 
 func _ready() -> void:
 	_update_boundaries()
-	_update_layers(collision_layer)
-	_update_masks(collision_mask)
+	_update_layers()
+	_update_masks()
 	get_viewport().size_changed.connect(_on_viewport_size_changed)
 	
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		_update_boundaries()
 	
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if update_on_next_physics_frame:
 		_update_boundaries()
 		update_on_next_physics_frame = false
@@ -47,15 +47,15 @@ func _update_boundaries() -> void:
 	bottom_edge_body.global_position = viewport_rect.end # bottom right
 	
 	
-func _update_layers(value: int) -> void:
-	top_edge_body.collision_layer = value
-	left_edge_body.collision_layer = value
-	right_edge_body.collision_layer = value
-	bottom_edge_body.collision_layer = value
+func _update_layers() -> void:
+	top_edge_body.collision_layer = collision_layer
+	left_edge_body.collision_layer = collision_layer
+	right_edge_body.collision_layer = collision_layer
+	bottom_edge_body.collision_layer = collision_layer
 	
 	
-func _update_masks(value: int) -> void:
-	top_edge_body.collision_mask = value
-	left_edge_body.collision_mask = value
-	right_edge_body.collision_mask = value
-	bottom_edge_body.collision_mask = value
+func _update_masks() -> void:
+	top_edge_body.collision_mask = collision_mask
+	left_edge_body.collision_mask = collision_mask
+	right_edge_body.collision_mask = collision_mask
+	bottom_edge_body.collision_mask = collision_mask
