@@ -12,9 +12,6 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
-	position.x = clamp(position.x, 0, get_viewport().size.x)
-	position.y = clamp(position.y, 0, get_viewport().size.y)
-	
 
 func _on_button_pressed() -> void:
 	var tween = create_tween()

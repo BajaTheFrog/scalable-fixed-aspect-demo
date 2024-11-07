@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://chnmwjy38xvya"]
+[gd_scene load_steps=3 format=3 uid="uid://chnmwjy38xvya"]
 
 [ext_resource type="PackedScene" uid="uid://wqijouwafajp" path="res://icon_man.tscn" id="1_8vjg8"]
+[ext_resource type="PackedScene" uid="uid://cowvgi30mk8fj" path="res://viewport_barrier.tscn" id="1_fgl4g"]
 
 [node name="TestJetPackScene" type="Node2D"]
+
+[node name="ViewportBarrier" parent="." instance=ExtResource("1_fgl4g")]
 
 [node name="IconMan" parent="." instance=ExtResource("1_8vjg8")]
 position = Vector2(660, 863)

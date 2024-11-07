@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://cowvgi30mk8fj"]
+
+[ext_resource type="Script" path="res://viewport_barrier.gd" id="1_c8p8f"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lfvmu"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_57015"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cn0xl"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_r68lu"]
+
+[node name="ViewportBarrier" type="Node2D" node_paths=PackedStringArray("top_edge_body", "left_edge_body", "right_edge_body", "bottom_edge_body")]
+script = ExtResource("1_c8p8f")
+top_edge_body = NodePath("top_edge_body")
+left_edge_body = NodePath("left_edge_body")
+right_edge_body = NodePath("right_edge_body")
+bottom_edge_body = NodePath("bottom_edge_body")
+
+[node name="top_edge_body" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="top_edge_body"]
+shape = SubResource("WorldBoundaryShape2D_lfvmu")
+
+[node name="left_edge_body" type="StaticBody2D" parent="."]
+position = Vector2(0, 1416)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left_edge_body"]
+shape = SubResource("WorldBoundaryShape2D_57015")
+
+[node name="right_edge_body" type="StaticBody2D" parent="."]
+position = Vector2(1425, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right_edge_body"]
+shape = SubResource("WorldBoundaryShape2D_cn0xl")
+
+[node name="bottom_edge_body" type="StaticBody2D" parent="."]
+position = Vector2(1425, 1416)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom_edge_body"]
+shape = SubResource("WorldBoundaryShape2D_r68lu")
